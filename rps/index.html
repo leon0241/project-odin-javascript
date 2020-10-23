@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function computerPlay() {
+        arr = ["rock", "paper", "scissors"]
+        choice = Math.floor(Math.random() * arr.length)
+        return arr[choice]
+      }
+
+      function playerPlay() {
+        let choice = prompt("Choose from rock, paper or scissors")
+        let check = choice.toLowerCase()
+        while(check != "rock" && check != "paper" && check != "scissors"){
+          choice = prompt("Try again. Choose from rock, paper or scissors")
+          check = choice.toLowerCase()
+        }
+        return check
+      }
+
+      function rpsRound(playerSelection, computerSelection) {
+        let matchup = playerSelection.charAt(0) + computerSelection.charAt(0) //string w/ concat first letter of player and computer
+        let win = ["pr", "rs", "sp"] //win conditions strings
+        let draw = ["rr", "pp", "ss"]
+        let state = 0 //init lose
+
+        for(i = 0; i < win.length; i++) { //checks for each value of win arr
+          if(matchup == win[i]){ //compares
+            state = 1 //sets state to true
+            break //breaks for loop
+          } else if(matchup == draw[i]){
+            state = 2
+            break
+          }
+        }
+        return state //returns bool true = win, false = lose
+      }
+
+      function game(){
+        let length = 5 //best of 5 games
+        let wins = 0
+        let draws = 0
+        for(j = 0; j < 5; j++) { //loops 5 times
+          let playerSelection = playerPlay() //player rps choice
+          let computerSelection = computerPlay() //comp rps choice(random)
+          let round = rpsRound(playerSelection, computerSelection) //plays round and returns bool
+          if(round == 1) {
+            wins++
+            console.log("You won round " + (j + 1))
+          } else if(round == 2) {
+            draws++
+            console.log("You tied round " + (j + 1))
+          } else {
+            console.log("You lost round " + (j + 1))
+          }
+        }
+
+        total = length - draws
+        winNum = total / 2
+        if(wins > winNum){
+          console.log("You won the game")
+        } else if(wins == winNum){
+          console.log("You tied the game")
+        } else {
+          console.log("You lost the game")
+        }
+      }
+
+      game()
+    </script>
+  </body>
+</html>
