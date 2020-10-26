@@ -18,23 +18,22 @@ let losses = 0
 //Listeners//
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    let choice = e.target.id
-    game(choice)
+    let choice = e.target.id //sets choice to the id of the target button (already as rock, paper, scissors)
+    game(choice) //starts game with choice as parameter (this will be the playerSelection variable)
   })
 })
 
-reset.addEventListener("click", () => resetGame())
+reset.addEventListener("click", () => resetGame()) //event listener hearing resetGame
 
 
 //Functions
-function computerPlay() {
+function computerPlay() { //Computer Play - Random from 1 to 3 and selects from array
   let arr = ["rock", "paper", "scissors"]
   let choice = Math.floor(Math.random() * arr.length)
-  //compButtons[choice].style.backgroundColor = "black"
   return arr[choice]
 }
 
-function playerPlay() {
+function playerPlay() { //Prompt to type rock/paper/scissors <CURRENTLY NOT IN USE>
   let choice = prompt("Choose from rock, paper or scissors")
   let check = choice.toLowerCase()
   while(check != "rock" && check != "paper" && check != "scissors"){
@@ -44,7 +43,7 @@ function playerPlay() {
   return check
 }
 
-function rpsRound(playerSelection, computerSelection) {
+function rpsRound(playerSelection, computerSelection) { //2 vars input, calculates rps, and returns 0 lose <-> 1 win <-> 2 draw
   let matchup = playerSelection.charAt(0) + computerSelection.charAt(0) //string w/ concat first letter of player and computer
   let win = ["pr", "rs", "sp"] //win conditions strings
   let state = 0 //init lose
@@ -58,10 +57,10 @@ function rpsRound(playerSelection, computerSelection) {
       break
     }
   }
-  return state //returns bool true = win, false = lose
+  return state //returns 0 = lose, 1 = win, 2 = draw
 }
 
-function game(playerSelection){
+function game(playerSelection){ //Does 1 round of RPS and outputs the results in DOM
   let computerSelection = computerPlay() //comp rps choice(random)
   let round = rpsRound(playerSelection, computerSelection) //plays round and returns bool
   textFields[0].textContent = `You Played ${playerSelection}`
@@ -79,24 +78,24 @@ function game(playerSelection){
     textFields[2].textContent = `You lost round ${games}`
     compWins.textContent = `Computer Wins: ${losses}`
   }
-  if(wins > 0){
+  if(wins > 0 || losses > 0){ //Counts for edge case where first game is draw resulting in WR=NaN
     calcWins()
   }
 }
 
-function calcWins(){
-  let total = games - draws
-  let winRatePerc = Math.round(wins / total * 100)
+function calcWins(){ //Calculates win rate
+  let total = games - draws //Takes away draw games from total
+  let winRatePerc = Math.round(wins / total * 100) //Finds percentage
   textFields[3].textContent = `Current win rate: ${winRatePerc}%`
 }
 
-function resetGame(){
+function resetGame(){ //Reset all values to 0 and resets DOM
   games = 0
   wins = 0
   draws = 0
   losses = 0
-  textFields.forEach((field) => {
-    field.textContent = ""
+  textFields.forEach((field) => { //Reset should have [0] as "Press a button to start"
+    field.textContent = ""        //but i kinda cba so w.e
   });
   playerWins.textContent = "Player Wins: 0"
   compWins.textContent = "Computer Wins: 0"
