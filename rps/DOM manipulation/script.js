@@ -4,17 +4,12 @@ const compButtons = document.querySelectorAll(".compButton")
 const reset = document.querySelector("#resetButton")
 
 const textContainer = document.querySelector("#gameState")
-const playerText = document.querySelector("#playerText")
-const compText = document.querySelector("#compText")
-const victoryText = document.querySelector("#victoryText")
-const playerWins = document.querySelector("#playerWins")
+const textFields = document.querySelectorAll(".gameText")
 const compWins = document.querySelector("#compWins")
 const winRate = document.querySelector("#winRate")
 
-
 //Other Variables
 let choice = ""
-let resetGame = false
 let wins = 0
 let draws = 0
 let games = 0
@@ -28,7 +23,7 @@ buttons.forEach((button) => {
   })
 })
 
-reset.addEventListener("click", () => resetGame = true)
+reset.addEventListener("click", () => resetGame())
 
 
 //Functions
@@ -69,27 +64,41 @@ function rpsRound(playerSelection, computerSelection) {
 function game(playerSelection){
   let computerSelection = computerPlay() //comp rps choice(random)
   let round = rpsRound(playerSelection, computerSelection) //plays round and returns bool
-  playerText.textContent = `You Played ${playerSelection}`
-  compText.textContent = `Computer Played ${computerSelection}`
+  textFields[0].textContent = `You Played ${playerSelection}`
+  textFields[1].textContent = `Computer Played ${computerSelection}`
   games++
   if(round == 1) {
     wins++
-    victoryText.textContent = `You won round ${games}`
+    textFields[2].textContent = `You won round ${games}`
     playerWins.textContent = `Player Wins: ${wins}`
   } else if(round == 2) {
     draws++
-    victoryText.textContent = `You tied round ${games}`
+    textFields[2].textContent = `You tied round ${games}`
   } else {
     losses++
-    victoryText.textContent = `You lost round ${games}`
+    textFields[2].textContent = `You lost round ${games}`
     compWins.textContent = `Computer Wins: ${losses}`
   }
-  calcWins()
+  if(wins > 0){
+    calcWins()
+  }
 }
 
 function calcWins(){
   let total = games - draws
-  let winRate = Math.round(wins / total * 100)
-  winRate.textContent = `Current win rate: ${winRate}`
+  let winRatePerc = Math.round(wins / total * 100)
+  textFields[3].textContent = `Current win rate: ${winRatePerc}%`
+}
+
+function resetGame(){
+  games = 0
+  wins = 0
+  draws = 0
+  losses = 0
+  textFields.forEach((field) => {
+    field.textContent = ""
+  });
+  playerWins.textContent = "Player Wins: 0"
+  compWins.textContent = "Computer Wins: 0"
 }
 //game()
