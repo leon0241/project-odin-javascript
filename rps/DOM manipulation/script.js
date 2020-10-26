@@ -52,7 +52,7 @@ function rpsRound(playerSelection, computerSelection) { //2 vars input, calculat
     if(matchup == win[i]){ //compares
       state = 1 //sets state to true
       break //breaks for loop
-    } else if(playerSelection.charAt(0) == computerSelection.charAt(0)){
+    } else if(playerSelection.charAt(0) == computerSelection.charAt(0)){ //player = comp <e.g rr> (means draw)
       state = 2
       break
     }
