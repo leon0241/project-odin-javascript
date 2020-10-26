@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Leon's RPS</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Leon's RPS</h1>
+    <div class="RPSSection">
+      <div class="sectionSide" id="PlayerChoice">
+        <p class="wins" id="playerWins">Player Wins: 0</p>
+        <button type="button" class="rpsButton" id="rock">Rock</button>
+        <button type="button" class="rpsButton" id="paper">Paper</button>
+        <button type="button" class="rpsButton" id="scissors">Scissors</button>
+
+      </div>
+      <div class="sectionMid" id="GameState">
+        <p class="gameText" id="playerText">Press a button to start</p>
+        <p class="gameText" id="compText"></p>
+        <p class="gameText" id="victoryText"></p>
+        <p class="gameText" id="winRate"></p>
+        <button type="button" id="resetButton">Reset</button>
+      </div>
+      <div class="sectionSide" id="CompChoice">
+        <p class="wins" id="compWins">Computer Wins: 0</p>
+        <button type="button" class="compButton" id="CRock" disabled>Rock</button>
+        <button type="button" class="compButton" id="CPaper" disabled>Paper</button>
+        <button type="button" class="compButton" id="CScissors" disabled>Scissors</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>

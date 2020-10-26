@@ -1,0 +1,32 @@
+body{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.RPSSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.sectionSide{
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
+.sectionMid{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 2 0 20%;
+}
+
+.rpsButton, .compButton{
+  font-size: 40px;
+  margin: 8px;
+}
+
+#compText{
+}

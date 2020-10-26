@@ -25,14 +25,13 @@
       function rpsRound(playerSelection, computerSelection) {
         let matchup = playerSelection.charAt(0) + computerSelection.charAt(0) //string w/ concat first letter of player and computer
         let win = ["pr", "rs", "sp"] //win conditions strings
-        let draw = ["rr", "pp", "ss"]
         let state = 0 //init lose
 
         for(i = 0; i < win.length; i++) { //checks for each value of win arr
           if(matchup == win[i]){ //compares
             state = 1 //sets state to true
             break //breaks for loop
-          } else if(matchup == draw[i]){
+          } else if(playerSelection.charAt(0) == computerSelection.charAt(0)){
             state = 2
             break
           }
@@ -44,18 +43,18 @@
         let length = 5 //best of 5 games
         let wins = 0
         let draws = 0
-        for(j = 0; j < 5; j++) { //loops 5 times
+        for(j = 0; j < length; j++) { //loops 5 times
           let playerSelection = playerPlay() //player rps choice
           let computerSelection = computerPlay() //comp rps choice(random)
           let round = rpsRound(playerSelection, computerSelection) //plays round and returns bool
           if(round == 1) {
             wins++
-            console.log("You won round " + (j + 1))
+            console.log(`${playerSelection} ${computerSelection} - You won round ${j+1}`)
           } else if(round == 2) {
             draws++
-            console.log("You tied round " + (j + 1))
+            console.log(`${playerSelection} ${computerSelection} - You tied round ${j+1}`)
           } else {
-            console.log("You lost round " + (j + 1))
+            console.log(`${playerSelection} ${computerSelection} - You lost round ${j+1}`)
           }
         }
 
