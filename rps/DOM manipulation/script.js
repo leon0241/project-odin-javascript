@@ -1,9 +1,9 @@
 //DOM Variables
-const buttons = document.querySelectorAll(".rpsButton")
+const buttons = document.querySelectorAll(".rpsButton") //buttons
 const compButtons = document.querySelectorAll(".compButton")
 const reset = document.querySelector("#resetButton")
 
-const textContainer = document.querySelector("#gameState")
+const textContainer = document.querySelector("#gameState") //text fields
 const textFields = document.querySelectorAll(".gameText")
 const compWins = document.querySelector("#compWins")
 const winRate = document.querySelector("#winRate")
